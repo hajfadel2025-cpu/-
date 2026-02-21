@@ -16,24 +16,22 @@
         }
         .container { width: 100%; max-width: 800px; }
         .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .labels { display: flex; gap: 10px; margin-bottom: 10px; }
-        .label { flex: 1; background: white; color: #1a4b8c; text-align: center; padding: 5px; border-radius: 5px; font-weight: bold; }
         .row { display: flex; gap: 10px; margin-bottom: 10px; }
         .cell { flex: 1; background: #0d2b52; padding: 15px; border-radius: 8px; text-align: center; font-size: 1.5rem; font-weight: bold; }
-        .currency { display: flex; align-items: center; gap: 10px; justify-content: center; }
-        img { width: 30px; border-radius: 3px; }
         
-        /* تنسيق العنوان الكبير بالأسفل */
+        /* تنسيق العنوان الجديد بالأسفل */
         .footer-address {
             margin-top: 30px;
             background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
+            padding: 25px;
             border-radius: 15px;
             text-align: center;
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            line-height: 1.6;
         }
-        .address-text { font-size: 2.2rem; font-weight: bold; display: block; margin-bottom: 10px; }
-        .phone-text { font-size: 1.8rem; color: #ffeb3b; }
+        .address-title { font-size: 2.2rem; font-weight: bold; color: white; display: block; margin-bottom: 15px; }
+        .address-details { font-size: 1.4rem; color: #e0e0e0; display: block; margin-bottom: 10px; }
+        .phone-highlight { font-size: 1.8rem; color: #ffeb3b; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -41,68 +39,31 @@
         <div class="header">
             <div>
                 <div style="font-size: 2.5rem; font-weight: bold;">مكتب حج فاضل</div>
-                <div style="font-size: 1rem; opacity: 0.8;">hajfadel</div>
+                <div style="font-size: 1.1rem; opacity: 0.8;">hajfadel</div>
             </div>
             <div style="text-align: left;">
-                <div>21/02/2026</div>
-                <div id="clock" style="font-size: 1.8rem;">04:51 PM</div>
+                <div id="clock" style="font-size: 2rem;">05:02 PM</div>
             </div>
         </div>
 
-        <div class="labels">
-            <div class="label">SALE</div>
-            <div class="label">BUY</div>
-            <div class="label">CURRENCY</div>
-        </div>
-
         <div class="row">
-            <div class="cell">153.000</div>
+            <div class="cell">USD 🇺🇸</div>
             <div class="cell">152.000</div>
-            <div class="cell currency">USD <img src="https://flagcdn.com/w40/us.png"></div>
-        </div>
-
-        <div class="row">
-            <div class="cell">117.75</div>
-            <div class="cell">118</div>
-            <div class="cell currency">EUR <img src="https://flagcdn.com/w40/eu.png"></div>
+            <div class="cell">153.000</div>
         </div>
 
         <div class="footer-address">
-            <span class="address-text">📍 العنوان:مكتب حج فاضل
-
-هولير / أربيل
-
-شارع 30 متري / جسر سيداوا 
-جانب مطعم سيوار حلب وفندق مشجر
-مقابل دائرة المكافحة
-موبايل.  07503693455
-
-موبايل 07508741611
-
-واتس اب 07501983870
-
-دوام المكتب : 
-
-صيفا : من التاسعة والنصف صباحا حتى الساعة السادسة والنصف مساء
-
-شتاء : من التاسعة والنصف
-صباحا حتى الساعة الخامسة مساء
-
-موقع المكتب
-
-Dropped Pin
-
-https://goo.gl/maps/ti2MMXu6opz</span>
-            <span class="phone-text">📞 هاتف: 07800000000 - 07700000000</span>
+            <span class="address-title">📍 أربيل - هولير</span>
+            <span class="address-details">شارع 30 متري / جسر سيداوا - جانب مطعم سيوار حلب وفندق مشجر - مقابل دائرة المكافحة</span>
+            <div class="phone-highlight">
+                📞 موبايل: 07503693455 | 07508741611
+                <br>
+                💬 واتساب: 07501983870
+            </div>
+            <div style="margin-top: 15px; font-size: 1.1rem; color: #ffeb3b;">
+                ⏰ دوام المكتب: صيفاً (9:30 ص - 6:30 م) | شتاءً (9:30 ص - 5:30 م)
+            </div>
         </div>
     </div>
-
-    <script>
-        function updateTime() {
-            const now = new Date();
-            document.getElementById('clock').textContent = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
-        }
-        setInterval(updateTime, 1000);
-    </script>
 </body>
 </html>
