@@ -6,7 +6,7 @@
     <title>مكتب حج فاضل - أسعار الصرف</title>
     <style>
         body {
-            font-family: sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(180deg, #1e5799 0%, #207cca 100%);
             color: white;
             padding: 20px;
@@ -16,65 +16,81 @@
         }
         .container { width: 100%; max-width: 850px; }
         .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .labels { display: flex; gap: 10px; margin-bottom: 10px; }
-        .label { flex: 1; background: white; color: #1a4b8c; text-align: center; padding: 5px; border-radius: 5px; font-weight: bold; }
-        .row { display: flex; gap: 10px; margin-bottom: 10px; }
-        .cell { flex: 1; background: #0d2b52; padding: 15px; border-radius: 8px; text-align: center; font-size: 1.8rem; font-weight: bold; }
-        .currency { display: flex; align-items: center; gap: 10px; justify-content: center; }
-        img { width: 30px; border-radius: 3px; }
         
-        /* تنسيق العنوان المطور */
+        /* ترتيب العناوين */
+        .labels { display: flex; gap: 10px; margin-bottom: 10px; }
+        .label { flex: 1; background: white; color: #1a4b8c; text-align: center; padding: 8px; border-radius: 5px; font-weight: bold; font-size: 1.2rem; }
+        
+        /* ترتيب الصفوف: العملة يمين، الشراء وسط، البيع يسار */
+        .row { display: flex; gap: 10px; margin-bottom: 10px; flex-direction: row; }
+        .cell { flex: 1; background: #0d2b52; padding: 20px; border-radius: 10px; text-align: center; font-size: 2rem; font-weight: bold; display: flex; align-items: center; justify-content: center; }
+        
+        .currency-cell { justify-content: flex-start; padding-right: 25px; color: #ffeb3b; }
+        .currency-cell img { margin-right: 15px; width: 40px; border-radius: 4px; }
+
+        /* صندوق العنوان السفلي */
         .footer-address {
             margin-top: 30px;
-            background: rgba(13, 43, 82, 0.8);
+            background: rgba(13, 43, 82, 0.9);
             padding: 25px;
             border-radius: 20px;
             text-align: center;
-            border: 2px solid #ffeb3b;
+            border: 3px solid #ffeb3b;
+            box-shadow: 0px 10px 20px rgba(0,0,0,0.4);
         }
-        .main-title { font-size: 2.5rem; font-weight: bold; color: #ffeb3b; display: block; margin-bottom: 10px; }
-        .contact-info { font-size: 1.7rem; color: #00ff00; font-weight: bold; }
+        .main-title { font-size: 2.5rem; font-weight: bold; color: #ffeb3b; display: block; margin-bottom: 15px; }
+        .contact-info { font-size: 1.8rem; color: #00ff00; font-weight: bold; margin-top: 10px; }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
             <div>
-                <div style="font-size: 2.8rem; font-weight: bold;">مكتب حج فاضل</div>
+                <div style="font-size: 3rem; font-weight: bold;">مكتب حج فاضل</div>
                 <div style="font-size: 1.2rem; opacity: 0.8;">hajfadel</div>
             </div>
-            <div id="clock" style="font-size: 2rem;">05:10 PM</div>
+            <div id="clock" style="font-size: 2.2rem; font-weight: bold;">05:14 PM</div>
         </div>
 
         <div class="labels">
-            <div class="label">SALE</div>
-            <div class="label">BUY</div>
-            <div class="label">CURRENCY</div>
+            <div class="label">العملة (CURRENCY)</div>
+            <div class="label">شراء (BUY)</div>
+            <div class="label">بيع (SALE)</div>
         </div>
 
         <div class="row">
-            <div class="cell">153,000</div>
+            <div class="cell currency-cell">
+                <img src="https://flagcdn.com/w80/us.png"> USD
+            </div>
             <div class="cell">152,000</div>
-            <div class="cell currency">USD <img src="https://flagcdn.com/w40/us.png"></div>
+            <div class="cell" style="color: #ffeb3b;">153,000</div>
         </div>
 
         <div class="row">
-            <div class="cell">117.75</div>
+            <div class="cell currency-cell">
+                <img src="https://flagcdn.com/w80/eu.png"> EUR
+            </div>
             <div class="cell">118</div>
-            <div class="cell currency">EUR <img src="https://flagcdn.com/w40/eu.png"></div>
+            <div class="cell" style="color: #ffeb3b;">117.75</div>
         </div>
 
         <div class="row">
-            <div class="cell">4,450</div>
+            <div class="cell currency-cell">
+                <img src="https://flagcdn.com/w80/tr.png"> TRY
+            </div>
             <div class="cell">4,350</div>
-            <div class="cell currency">TRY <img src="https://flagcdn.com/w40/tr.png"></div>
+            <div class="cell" style="color: #ffeb3b;">4,450</div>
         </div>
 
         <div class="footer-address">
             <span class="main-title">📍 أربيل - هولير</span>
-            <div style="font-size: 1.3rem; margin-bottom: 10px;">شارع 30 متري / جسر سيداوا - جانب مطعم سيوار حلب</div>
+            <div style="font-size: 1.5rem; line-height: 1.6; margin-bottom: 15px;">
+                شارع 30 متري / جسر سيداوا - جانب مطعم سيوار حلب وفندق مشجر
+            </div>
             <div class="contact-info">
                 📞 07503693455 - 07508741611
+                <br>
+                💬 واتساب: 07501983870
             </div>
         </div>
     </div>
