@@ -1,1 +1,112 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>لوحة التحكم - مكتب حج فاضل</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f4f7f9; padding: 20px; }
+        .container { max-width: 900px; margin: auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        h2 { color: #001d3d; border-bottom: 3px solid #ffd60a; padding-bottom: 10px; }
+        
+        .add-box { display: flex; gap: 10px; background: #eef2f7; padding: 20px; border-radius: 10px; margin-bottom: 25px; }
+        input { padding: 12px; border: 1px solid #ccc; border-radius: 6px; flex: 1; font-size: 16px; }
+        
+        .btn { padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; color: white; transition: 0.3s; }
+        .btn-add { background: #27ae60; }
+        .btn-update { background: #2980b9; }
+        .btn-delete { background: #e74c3c; }
+        .btn:hover { opacity: 0.8; }
 
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th { background: #001d3d; color: white; padding: 15px; }
+        td { padding: 15px; border-bottom: 1px solid #eee; text-align: center; }
+        .price-input { width: 120px; text-align: center; border: 2px solid #ddd; color: #2c3e50; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>إدارة أسعار العملات - مكتب حج فاضل</h2>
+
+    <div class="add-box">
+        <input type="text" id="newCode" placeholder="رمز العملة (مثلاً: GBP)">
+        <input type="text" id="newBuy" placeholder="سعر الشراء">
+        <input type="text" id="newSale" placeholder="سعر البيع">
+        <button class="btn btn-add" onclick="addNewCurrency()">+ إضافة عملة جديدة</button>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>العملة</th>
+                <th>سعر الشراء</th>
+                <th>سعر البيع</th>
+                <th>إجراءات</th>
+            </tr>
+        </thead>
+        <tbody id="currencyTable">
+            </tbody>
+    </table>
+</div>
+
+<script>
+    // جلب البيانات من الذاكرة أو تعيين قيم افتراضية
+    let rates = JSON.parse(localStorage.getItem("office_rates")) || [
+        { code: "USD", buy: "152,500", sale: "153,000" },
+        { code: "EUR", buy: "1.175", sale: "1.16" },
+        { code: "TRY", buy: "0", sale: "0" }
+    ];
+
+    function renderTable() {
+        const tableBody = document.getElementById("currencyTable");
+        tableBody.innerHTML = "";
+        rates.forEach((item, index) => {
+            tableBody.innerHTML += `
+                <tr>
+                    <td style="font-weight:bold; color:#001d3d; font-size:18px;">${item.code}</td>
+                    <td><input type="text" class="price-input" id="buy-${index}" value="${item.buy}"></td>
+                    <td><input type="text" class="price-input" id="sale-${index}" value="${item.sale}"></td>
+                    <td>
+                        <button class="btn btn-update" onclick="updateRate(${index})">تحديث السعر</button>
+                        <button class="btn btn-delete" onclick="deleteCurrency(${index})">حذف</button>
+                    </td>
+                </tr>
+            `;
+        });
+        localStorage.setItem("office_rates", JSON.stringify(rates));
+    }
+
+    function updateRate(index) {
+        rates[index].buy = document.getElementById(`buy-${index}`).value;
+        rates[index].sale = document.getElementById(`sale-${index}`).value;
+        localStorage.setItem("office_rates", JSON.stringify(rates));
+        alert("تم تحديث سعر " + rates[index].code + " بنجاح!");
+    }
+
+    function addNewCurrency() {
+        const code = document.getElementById("newCode").value.toUpperCase();
+        const buy = document.getElementById("newBuy").value;
+        const sale = document.getElementById("newSale").value;
+
+        if (code && buy && sale) {
+            rates.push({ code, buy, sale });
+            renderTable();
+            document.getElementById("newCode").value = "";
+            document.getElementById("newBuy").value = "";
+            document.getElementById("newSale").value = "";
+        } else {
+            alert("يرجى إكمال جميع الحقول");
+        }
+    }
+
+    function deleteCurrency(index) {
+        if (confirm("هل أنت متأكد من حذف هذه العملة؟")) {
+            rates.splice(index, 1);
+            renderTable();
+        }
+    }
+
+    renderTable();
+</script>
+</body>
+</html>
